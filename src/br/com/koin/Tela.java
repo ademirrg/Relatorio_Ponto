@@ -88,6 +88,8 @@ public class Tela extends JFrame implements ActionListener {
 	public void validaCampos() {
 		String user = campoUser.getText();
 		String pass = campoSenha.getText();
+		user = user.trim();
+		pass = pass.trim();
 		
 		if(user.length() == 0) {
 			JOptionPane.showMessageDialog(null, "O campo USUÁRIO não pode ser vazio!", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);

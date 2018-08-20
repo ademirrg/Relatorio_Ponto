@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.*;
 import java.net.URL;
 import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
@@ -58,7 +57,7 @@ public class Tela extends JFrame implements ActionListener {
 					botoes.bt_ok.doClick();
 				}
 				else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					System.exit(0);
+					botoes.bt_sair.doClick();
 				}
 			}
 		});
@@ -69,7 +68,7 @@ public class Tela extends JFrame implements ActionListener {
 					botoes.bt_ok.doClick();
 				}
 				else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					System.exit(0);
+					botoes.bt_sair.doClick();
 				}
 			}
 		});
@@ -102,6 +101,7 @@ public class Tela extends JFrame implements ActionListener {
 			page.abreBrowser();
 			page.consultaRelatorio();
 			page.fechaBrowser();
+			page.apresentaSaldoBH();
 		}
 	}
 	

@@ -2,6 +2,9 @@ package br.com.koin;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -21,12 +24,29 @@ public class Botao {
 		bt_ok.addActionListener(tela);
 		bt_ok.setActionCommand("command_ok");
 		bt_ok.setBackground(corBt);
+		bt_ok.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					bt_ok.doClick();
+				}
+				else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					bt_sair.doClick();
+				}
+			}
+		});
 		
 		bt_sair = new JButton("Sair");
 		bt_sair.setBounds(105, posV, comptoBt, altBt);
 		bt_sair.addActionListener(tela);
 		bt_sair.setActionCommand("command_sair");
 		bt_sair.setBackground(corBt);
+		bt_sair.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					bt_sair.doClick();
+				}
+			}
+		});
 		
 		frame.add(bt_ok);
 		frame.add(bt_sair);

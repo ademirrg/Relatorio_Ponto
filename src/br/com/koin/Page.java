@@ -10,14 +10,19 @@ import javax.swing.JOptionPane;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchWindowException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Page {
 	
 	WebDriver driver;
+	WebDriverWait wait;
 	
 	public void abreBrowser() {
 		try {
@@ -50,15 +55,34 @@ public class Page {
 			senha.sendKeys(PageVO.getPass());
 			senha.submit();
 			
-			boolean loginOK = driver.getPageSource().contains("Pessoas");
+			boolean loginOK = driver.getPageSource().contains("Contatos e info");
 			
 			if (loginOK == true) {
+				PageVO.setLoginOK(loginOK);
+				WebElement ponto = driver.findElement(By.id("UserProfilePonto"));
+				ponto.click();
+				WebElement relatorios = driver.findElement(By.id("Tab8"));
+				relatorios.click();
+				wait  = new WebDriverWait(driver, 60);
 				
+				WebElement botaoAtend = wait.until(ExpectedConditions.elementToBeClickable(By.id("conpassButton")));
+				botaoAtend.click();
+				
+				Select periodo = new Select(driver.findElement(By.id("select_periodos")));
+				periodo.selectByValue("134");
+				
+				WebElement checkPessoas = driver.findElement(By.xpath("//*[@id=\"FilterBar\"]/div[1]/label"));
+				checkPessoas.click();
+				WebElement gerarEspelho = driver.findElement(By.id("bt_gerar_espelho"));
+				gerarEspelho.click();
+				String saldoBH = driver.findElement(By.xpath("//*[@id=\"Grid\"]/tbody/tr/td[8]")).getText();
+				saldoBH = saldoBH.trim();
+				PageVO.setSaldoBH(saldoBH);
 			}
 			else{
 				driver.quit();
 				JOptionPane.showMessageDialog(null, "O login não pôde ser realizado corretamente!"
-						+ "\nVerifique se o usuário/senha informado(a) está correto(a)", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+						+ "\nVerifique se o usuário/senha informado(a) está correto(a).", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		catch(NoSuchElementException e) {
@@ -70,6 +94,11 @@ public class Page {
 			driver.quit();
 			JOptionPane.showMessageDialog(null, "Browser fechado.", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
+		catch(TimeoutException e) {
+			driver.quit();
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Timeout na espera de elemento.", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
 		catch(WebDriverException e) {
 			driver.quit();
 			e.printStackTrace();
@@ -77,8 +106,21 @@ public class Page {
 		} 
 	}
 	
+	public void apresentaSaldoBH() {
+		boolean loginOK = PageVO.getLoginOK();
+		if(loginOK == true) {
+			String saldoBH = PageVO.getSaldoBH();
+			
+			if(saldoBH.contains("-")) {
+				JOptionPane.showMessageDialog(null, "<html>Saldo do banco de horas: " + "<span style ='color:red'>" + saldoBH + "</span></html>", "Consulta Saldo BH", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "<html>Saldo do banco de horas: " + "<span style ='color:blue'>" + saldoBH + "</span></html>", "Consulta Saldo BH", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+	
 	public void fechaBrowser() {
 		driver.quit();
 	}
-	
 }

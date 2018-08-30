@@ -22,7 +22,7 @@ public class Tela extends JFrame implements ActionListener {
 		URL iconKoin = Main.class.getResource("/icon.jpg");
 		
 		// Tela
-		setTitle("GERADOR DE CPF/CNPJ");
+		setTitle("BANCO DE HORAS");
 		setSize(315, 225);
 		setLocationRelativeTo(null);
 		setResizable(false);

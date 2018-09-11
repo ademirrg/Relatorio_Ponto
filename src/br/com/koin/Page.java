@@ -65,7 +65,7 @@ public class Page {
 				relatorios.click();
 				wait  = new WebDriverWait(driver, 60);
 				
-				WebElement botaoAtend = wait.until(ExpectedConditions.elementToBeClickable(By.id("conpassButton")));
+				WebElement botaoAtend = wait.until(ExpectedConditions.elementToBeClickable(By.id("conpassButtonClose")));
 				botaoAtend.click();
 				
 				Select periodo = new Select(driver.findElement(By.id("select_periodos")));

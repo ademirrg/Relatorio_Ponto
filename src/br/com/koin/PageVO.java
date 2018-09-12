@@ -5,6 +5,7 @@ public class PageVO {
 	public static String pass = "";
 	public static String saldoBH = "0";
 	public static boolean loginOK = false;
+	public static boolean consultaOK = false;
 	
 	public static String getUser() {
 		return user;
@@ -29,5 +30,11 @@ public class PageVO {
 	}
 	public static void setLoginOK(boolean loginOK) {
 		PageVO.loginOK = loginOK;
+	}
+	public static boolean getConsultaOK() {
+		return consultaOK;
+	}
+	public static void setConsultaOK(boolean consultaOK) {
+		PageVO.consultaOK = consultaOK;
 	}
 }

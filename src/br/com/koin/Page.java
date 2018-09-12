@@ -78,6 +78,8 @@ public class Page {
 				String saldoBH = driver.findElement(By.xpath("//*[@id=\"Grid\"]/tbody/tr/td[8]")).getText();
 				saldoBH = saldoBH.trim();
 				PageVO.setSaldoBH(saldoBH);
+				boolean consultaOK = driver.getPageSource().contains("Saldo atual");
+				PageVO.setConsultaOK(consultaOK);
 			}
 			else{
 				driver.quit();
@@ -107,8 +109,8 @@ public class Page {
 	}
 	
 	public void apresentaSaldoBH() {
-		boolean loginOK = PageVO.getLoginOK();
-		if(loginOK == true) {
+		boolean consultaOK = PageVO.getConsultaOK();
+		if(consultaOK == true) {
 			String saldoBH = PageVO.getSaldoBH();
 			
 			if(saldoBH.contains("-")) {

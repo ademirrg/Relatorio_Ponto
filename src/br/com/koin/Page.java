@@ -5,9 +5,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
-
 import javax.swing.JOptionPane;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.TimeoutException;

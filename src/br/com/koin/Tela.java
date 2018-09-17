@@ -13,7 +13,7 @@ public class Tela extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	Botao botoes = new Botao();
 	Page page = new Page();
-	JTextField campoUser = new JTextField(System.getProperty("user.name") + "@koin.com.br");
+	JTextField campoUser = new JTextField("ademir.garcia@koin.com.br");
 	JTextField campoSenha = new JPasswordField();
 		
 	public void criaTela() {

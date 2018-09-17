@@ -63,7 +63,7 @@ public class Page {
 				ponto.click();
 				WebElement relatorios = driver.findElement(By.id("Tab8"));
 				relatorios.click();
-				wait  = new WebDriverWait(driver, 60);
+				wait  = new WebDriverWait(driver, 120);
 				
 				WebElement botaoAtend = wait.until(ExpectedConditions.elementToBeClickable(By.id("conpassButtonClose")));
 				botaoAtend.click();

@@ -120,6 +120,12 @@ public class Page {
 		}
 	}
 	
+	public void resetaVariaveisEstaticas() {
+		//Volta ao estado inicial
+		PageVO.setLoginOK(false);
+		PageVO.setConsultaOK(false);
+	}
+	
 	public void fechaBrowser() {
 		driver.quit();
 	}

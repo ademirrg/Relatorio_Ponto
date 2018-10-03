@@ -104,6 +104,7 @@ public class Tela extends JFrame implements ActionListener {
 			page.consultaRelatorio();
 			page.fechaBrowser();
 			page.apresentaSaldoBH();
+			page.resetaVariaveisEstaticas();
 		}
 	}
 	
